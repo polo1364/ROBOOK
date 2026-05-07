@@ -1,0 +1,13 @@
+{
+  "name": "ro-ep21-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static RO EP21 guide site for Railway deployment.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
