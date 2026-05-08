@@ -1552,13 +1552,218 @@
     }
 
     @media (max-width: 620px) {
-      .layout { width: min(100% - 20px, 1440px); padding-top: 10px; }
+      .layout { width: min(calc(100% - 20px), 1440px); padding-top: 10px; }
       .hero { border-radius: 24px; padding: 24px; }
       .stats, .grid.four { grid-template-columns: 1fr; }
       .nav { grid-template-columns: 1fr; }
       .section-head { align-items: start; flex-direction: column; }
       section { border-radius: 22px; padding: 18px; }
       table { min-width: 640px; }
+    }
+
+    /* Final mobile safety layer: avoid desktop effects breaking narrow screens. */
+    @media (max-width: 760px) {
+      html {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        perspective: none;
+      }
+
+      body::after,
+      .layout::before,
+      .layout::after,
+      .sidebar::after {
+        display: none;
+      }
+
+      .layout {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 10px 10px 42px;
+        filter: none;
+      }
+
+      .sidebar,
+      .toolbar,
+      main {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        grid-column: auto;
+        grid-row: auto;
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        transform: none !important;
+      }
+
+      .toolbar {
+        order: 1;
+        padding: 14px;
+        max-height: none;
+        overflow: visible;
+        border-radius: 20px;
+        clip-path: none;
+      }
+
+      .sidebar {
+        order: 2;
+        overflow: visible;
+        clip-path: none;
+        border-radius: 20px;
+      }
+
+      main {
+        order: 3;
+      }
+
+      .brand {
+        padding: 18px 18px 16px 52px;
+      }
+
+      .nav {
+        grid-template-columns: 1fr !important;
+        gap: 7px;
+        padding: 10px;
+      }
+
+      .nav a {
+        min-height: 44px;
+        padding: 10px 12px 10px 44px;
+        clip-path: none;
+        border-radius: 14px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 22px 18px;
+        border-radius: 22px;
+        transform-style: flat;
+      }
+
+      .hero::after {
+        display: none;
+      }
+
+      .hero h2 {
+        font-size: clamp(2rem, 11vw, 3rem);
+        line-height: 1.08;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .hero-actions,
+      .filterbar {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .button,
+      .filter {
+        width: 100%;
+      }
+
+      .stats,
+      .grid,
+      .grid.two,
+      .grid.three,
+      .grid.four,
+      .id-list,
+      .source-result-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      section {
+        padding: 16px;
+        border-radius: 20px;
+        transform-style: flat;
+      }
+
+      .section-head {
+        gap: 10px;
+      }
+
+      .section-head h3 {
+        font-size: clamp(1.35rem, 7vw, 1.9rem);
+      }
+
+      .guide-card,
+      details,
+      .note,
+      .table-wrap,
+      .source-group,
+      .result-item {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      code,
+      .cmd {
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .shell {
+        max-width: 100%;
+        white-space: pre-wrap;
+        overflow-x: auto;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 620px;
+      }
+
+      .search {
+        height: auto;
+        min-height: 52px;
+        line-height: 1.45;
+        padding: 12px 14px;
+      }
+
+      .gm-command-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "name action"
+          "alias alias"
+          "help help";
+        gap: 8px 10px;
+        padding: 12px;
+      }
+
+      .gm-index {
+        display: none;
+      }
+
+      .gm-alias,
+      .gm-help {
+        min-width: 0;
+        grid-column: auto;
+      }
+
+      .gm-help pre {
+        white-space: pre-wrap;
+      }
     }
   </style>
 </head>
@@ -1652,7 +1857,11 @@
           </article>
           <article class="guide-card" data-category="cmd">
             <h4>帳號與角色</h4>
-            <p>隨便建立帳號即可視為 GM。原始 GM 帳號可用 <code>admin / admin</code>，適合拿來組隊或測副本。刪除角色時信箱欄不用輸入，直接確認即可；角色位置可用右鍵預約移動再移到空位。</p>
+            <p>隨便建立帳號即可視為 GM。原始 GM 帳號可用 <code>admin / admin</code>，適合拿來組隊或測副本。組隊可用 <code>/organize 組隊名稱</code>。刪除角色時信箱欄不用輸入，直接確認即可；角色位置可用右鍵預約移動再移到空位。</p>
+          </article>
+          <article class="guide-card" data-category="file">
+            <h4>掛機遇王就飛</h4>
+            <p>若內掛 / 外掛想遇到 MVP 就飛，可到 <code>battle_conf.txt</code> 找「是否啟用遇見 MVP 時，視為攻擊目標」相關設定，將 <code>off</code> 改成 <code>on</code>。實際欄位名稱依版本翻譯可能略有不同。</p>
           </article>
         </div>
         <div class="note">若指令沒有反應，先重登角色。若製作出的道具出現紅字或會造成閃退，立刻前往 <code>@mapmove prt_in 286 128</code> 找刪除 NPC 清掉。</div>
@@ -3628,7 +3837,8 @@ cashdb</pre></span>
           </article>
           <article class="guide-card" data-category="cmd">
             <h4>盧恩龍爵快速示範</h4>
-            <p>劍士 <code>@jobchange 1</code>、騎士 <code>7</code>、騎士領主 <code>4008</code>、符文騎士 <code>4054</code>、轉生符文騎士 <code>4060</code>、盧恩龍爵 <code>4252</code>。每次轉職後補 <code>@joblvl 99</code> 與 <code>@allskills</code>，四轉後可 <code>@lvup 250</code>。</p>
+            <p>劍士 <code>@jobchange 1</code>、騎士 <code>7</code>、騎士領主 <code>4008</code>、符文騎士 <code>4054</code>、轉生符文騎士 <code>4060</code>、盧恩龍爵 <code>4252</code>。每次轉職後補 <code>@joblvl 99</code> 與 <code>@allskills</code>，四轉後可 <code>@lvup 250</code>。若劍士任務技能沒學到，可用 <code>@questskill 144</code>、<code>145</code>、<code>146</code> 補移動時回復 HP、弱點攻擊與自動狂暴。</p>
+            <p>直接升級時建議一個指令一個指令輸入，避免連續執行出錯；發光特效太亮可到 ESC 設定關閉簡化光環。對話窗按上鍵可叫回上一句指令，重複練功或測試時很方便。</p>
           </article>
         </div>
         <div class="table-wrap guide-card" data-category="cmd">
@@ -3736,6 +3946,7 @@ cashdb</pre></span>
               <tr><td>披肩</td><td>時光超越者斗篷-LT 480312、2025ROS決戰之劍 480620</td><td>全職業通用候選。</td></tr>
               <tr><td>鞋子</td><td>時光超越者之靴-LT 470183、狂怒戰靴 470265</td><td>狂怒武器可搭狂怒戰靴。</td></tr>
               <tr><td>飾品</td><td>時光超越者之戒-LT 490404、思念之戒-LT 490596</td><td>魔力之星套裝時可調整戒指配置。</td></tr>
+              <tr><td>額外頭飾</td><td>超時空頭冠、2024ROS戰鬥波利帽 400691、天地樹的信仰 400401、女王甲蟲頭盔 400511</td><td>可依職業選擇；天地樹偏法系，女王甲蟲偏物理。</td></tr>
               <tr><td>魔法套裝</td><td>魔力之星-LT 410256、魔力星陣-LT 420301、魔力星環-LT 490619</td><td>法系專用，三件一起較完整。</td></tr>
               <tr><td>物理外觀套</td><td>古代夢羅克貴族首飾 410254、魔王夢羅克的忠誠僕人 420236</td><td>物理向候選。</td></tr>
               <tr><td>兔寶寶套</td><td>瘋狂兔寶寶-LT 460020、瘋狂兔寶寶後背包-LT 480599</td><td>外觀可愛，鞋可搭尼羅河貴族高跟鞋-LT 470354 與俄塞里斯卡 4100。</td></tr>
@@ -3750,19 +3961,24 @@ cashdb</pre></span>
           <article class="guide-card" data-category="gear cmd">
             <h4>精煉、鑑定與升階</h4>
             <p><code>@item2 1383 1 1 20 0 4431 0 0 0</code> 代表裝備、數量、鑑定、精煉、損壞、四格卡片或附魔。直接精煉可用 <code>@refine 位置 20</code>；升階可用 <code>@grade 256 4</code> 將頭上升 A 階。</p>
+            <p>裝備評級屋可從傳送的特別地區進入。升階材料：祝福的埃特爾塵埃 1000337、D 級埃特爾海藍寶石 1000325、C 級埃特爾黃玉 1000326、B 級埃特爾紫水晶 1000327、A 級埃特爾琥珀 1000328。裝備 +20 可提高升階成功率，每提升一階通常要重新精煉。</p>
           </article>
         </div>
         <details class="guide-card" data-category="gear">
           <summary>卡片推薦整合</summary>
           <ul>
-            <li>武器：EP21 幽靈船船長卡 300532 對 BOSS 傷害、巴風特卡 4147 普攻範圍、死靈卡 4142 攻速、死靈騎士卡 4276 即死機率、海盜之王 4137 體型傷害。</li>
-            <li>飾品：EP21 死者嚮導卡 300565 近戰傷害、劍魚卡 4077 法術不中斷、貝雷傑卡 4145 減少變動詠唱。</li>
-            <li>衣服：EP21 被侵蝕的坦卡 300533、EP20 終極拉斯甘德卡 300472、尼德霍格幻影卡 4456。</li>
-            <li>頭部：EP19 終極青赤巨鳥卡 300377、潘利爾卡 4556、齊爾-D-01 卡 4403、蜂后卡 4132。</li>
-            <li>披肩：EP21 堯樂圖斯審判官卡 300530、EP20 聖地清潔隊長卡 300474、EP20 暴風雪天使卡 300473。</li>
-            <li>鞋子：活動肉粽角卡 300671。闇職業卡 4671 起可搭光職業卡 4684 起做套裝。</li>
+            <li>武器：EP21 幽靈船船長卡 300532 對 BOSS 傷害 +30%；巴風特卡 4147 普攻九格；死靈卡 4142 無限攻擊加速；死靈騎士卡 4276 機率即死；海盜之王 4137 對小中大體型傷害 +100%。</li>
+            <li>飾品：EP21 死者嚮導卡 300565 近戰傷害 +25%，230 級以上近戰傷害 +45%；劍魚卡 4077 法術不中斷；貝雷傑卡 4145 變動詠唱 -30%。</li>
+            <li>衣服：EP21 被侵蝕的坦卡 300533 對 BOSS 傷害 +30%，每精煉 +1 增加 ATK / P.ATK；EP20 終極拉斯甘德卡 300472 偏 BOSS 魔法傷害；尼德霍格幻影卡 4456 INT 與固定詠唱。</li>
+            <li>頭部：EP19 終極青赤巨鳥卡 300377 同時加 ATK / MATK，精煉每 +3 增加 P.ATK / S.MATK；潘利爾卡 4556 詠唱 -70%；齊爾-D-01 卡 4403 技能延遲 -30%；蜂后卡 4132 不消耗魔力礦石。</li>
+            <li>披肩：EP21 堯樂圖斯審判官卡 300530 暴擊傷害 +50%，可多張測試；EP20 聖地清潔隊長卡 300474 近戰與 BOSS；EP20 暴風雪天使卡 300473 遠距離與 BOSS。</li>
+            <li>鞋子：活動肉粽角卡 300671 全屬性物理與魔法傷害 +15%。闇職業卡 4671 起可搭光職業卡 4684 起做套裝；名稱可先查卡片網站，再用道具資料庫找編號。</li>
           </ul>
         </details>
+        <article class="guide-card" data-category="gear file">
+          <h4>附魔與測傷入口</h4>
+          <p>裝備附魔可找中央 167 125 系列商人；綿綿島附魔 NPC 在中央 153 120，有些附魔可能有 BUG，異常就不要用。想測傷害可到中央 243 62，或直接 <code>@mapmove prontera 243 62</code> 找英文守衛，選體型假人或屬性假人；也可用 <code>@monster 21077</code> 召喚假人。</p>
+        </article>
         <div class="table-wrap guide-card" data-category="gear cmd">
           <table>
             <thead><tr><th>一般裝備位置</th><th>編號</th><th>特殊裝備位置</th><th>編號</th></tr></thead>
@@ -3796,11 +4012,29 @@ cashdb</pre></span>
           </article>
           <article class="guide-card" data-category="gear">
             <h4>頭飾起步</h4>
-            <p>天使髮圈可用 2254，中段妖耳 2286，下段菸斗 5377。商城區可看頭上、頭中、頭下與服飾預覽；商城點可用 <code>@cash 100000</code>。</p>
+            <p>天使髮圈可用 2254，中段妖耳 2286，下段菸斗 5377。商城第一區可挑頭上、第二區可挑頭中、第三區可挑頭下；服飾右鍵可看配戴外觀。商城點可用 <code>@cash 100000</code>。</p>
+            <pre class="shell">@item 2254 1
+@item 2286 1
+@item 5377 1
+@item2 2254 1 1 10 0 4431 0 0 0</pre>
           </article>
           <article class="guide-card" data-category="gear file">
             <h4>服飾位置</h4>
             <p><code>Costume_Head_Top</code> 頭上、<code>Costume_Head_Mid</code> 頭中、<code>Costume_Head_Low</code> 頭下、<code>Costume_Garment</code> 披肩。披肩無法改成頭上中下，會顯示不出來。</p>
+            <p>頭上裝備常從 2234、5001 起查，服飾常從 5914 起查；自訂義服飾可看 40019-40108，自訂義翅膀可看 40109-40180，新特效披肩可看 47101-47169。</p>
+          </article>
+          <article class="guide-card" data-category="cmd pet">
+            <h4>美容院與外觀券</h4>
+            <p>職業服裝、髮型與顏色可到 <code>@mapmove prt_in 248 170</code> 美容院處理。常見外觀券包含克裡圖拉美髮券 6593、傑裡米的美髮券 6707、美髮禮卷 7622、路易士的美髮優惠券 7908、高級美髮券II 25736、服裝染色券 I / II 6046 / 6047、服裝變換券 6959。</p>
+          </article>
+          <article class="guide-card" data-category="pet file">
+            <h4>寵物與人工生命體親密度</h4>
+            <p>寵物可用 <code>@petfriendly 1000</code>、<code>@pethungry 100</code> 快速調整。非官方寵物最高親密時常見加成為全屬性 +10、HP +10%、SP +10%。人工生命體沒有直接指令，需到 <code>homunc.conf</code> 調整 <code>homunculus_friendly_rate</code>，例如 100 改 5000，餵幾次就能很親密。</p>
+            <p>想改寵物顯示名稱時，到 <code>mob_db.yml</code> 找該魔物本體編號，不是蛋編號；可用魔物資料庫查名稱與 ID 後再回檔案修改。</p>
+          </article>
+          <article class="guide-card" data-category="cmd">
+            <h4>超初手推車</h4>
+            <p>超級初學者想租手推車時，可先轉商人租車，再轉回超初。一般便利玩法也可使用遠端倉庫貓咪 <code>@item 22998 1</code> 或 <code>@storage</code> 降低負重壓力。</p>
           </article>
         </div>
         <details class="guide-card" data-category="pet">
@@ -3972,6 +4206,10 @@ cashdb</pre></span>
             <p>枯樹枝、喵陽桃果實、天地樹果實等可在消耗品資料中把 <code>Weight</code> 改低或改 0；若要不消耗可把 <code>Flags</code> 改成 <code>NoConsume: true</code>。天地樹果實 607 若要無 CD，移除 <code>Delay</code> 的 Duration 與 Status 設定。</p>
           </article>
           <article class="guide-card" data-category="file">
+            <h4>技能檔欄位對照</h4>
+            <p>改 <code>skill_db.yml</code> 時常看 <code>Duration</code> 持續時間、<code>Cooldown</code> 冷卻、<code>ItemCost</code> 消耗物品、<code>AfterCastActDelay</code> 後延遲、<code>FixedCastTime</code> 固定詠唱。<code>status.conf</code> 可調整登出是否移除狀態；<code>Knockback</code> 代表擊退格數，刪掉可讓怪物不被擊退。</p>
+          </article>
+          <article class="guide-card" data-category="file">
             <h4>腳本開關</h4>
             <p>不想啟用某腳本，在設定行前加 <code>//</code> 即可，例如 <code>//npc: npc/自定義腳本/BOSS.txt</code>。NPC 細項也可同樣註解，改完可用 <code>@reloadscript</code>。</p>
           </article>
@@ -4012,7 +4250,34 @@ skill "CR_FULLPROTECTION",5; // 保護全身裝備
 skill "BO_ADVANCE_PROTECTION",4; // 保護全身影子裝備
 skill "AB_OFFERTORIUM",5; // 解除異常狀態
 skill "AB_LAUDAAGNUS",4; // 解除異常狀態
-skill "AB_LAUDARAMUS",4; // 解除異常狀態</pre>
+skill "AB_LAUDARAMUS",4; // 解除異常狀態
+skill "AB_EUCHARISTICA",10; // 感恩歌，主教被動技能
+skill "AL_HEAL",10; // 治癒術 10
+skill "AL_INCAGI",10; // 加速術 10
+skill "AL_BLESSING",10; // 天使之賜福 10
+skill "AL_ANGELUS",10; // 天使之障壁 10
+skill "PR_MAGNIFICAT",5; // 聖母之頌歌 5
+skill "PR_GLORIA",5; // 幸運之頌歌 5
+skill "PR_IMPOSITIO",5; // 神威祈福 5
+skill "PR_SUFFRAGIUM",3; // 犧牲祈福 3
+skill "PR_ASPERSIO",5; // 撒水祈福 5
+skill "HP_ASSUMPTIO",5; // 聖母之祈福 5
+skill "AB_DUPLELIGHT",10; // 二道聖光
+skill "AB_RENOVATIO",4; // 淨化
+skill "AB_CLEMENTIA",3; // 慈悲術
+skill "AB_EXPIATIO",5; // 贖罪
+skill "AB_SECRAMENT",5; // 聖典
+skill "AB_CANTO",3; // 純白百合花
+skill "CD_PRESENS_ACIES",5; // 爆裂聖光
+skill "CD_ARGUTUS_TELUM",5; // 神聖防護
+skill "CD_COMPETENTIA",5; // 神聖權能
+skill "CD_BENEDICTUM",5; // 祝福讚歌
+skill "CD_ARGUTUS_VITA",5; // 光耀天命
+skill "CD_RELIGIO",5; // 全心奉獻
+skill "SR_RAISINGDRAGON",10; // 潛龍昇天，直接 5 顆球與爆氣
+skill "MO_EXTREMITYFIST",1; // 阿修羅霸凰拳</pre>
+          <p>也可到 <code>skill_tree.yml</code> 直接把技能加進初心者技能樹，例如在 <code>Job: Novice</code> 的 <code>Tree</code> 底下新增技能名稱與 <code>MaxLevel</code>。改完可用 <code>@reload itemdb</code> 或重開伺服器確認。</p>
+          <p><code>CR_FULLPROTECTION</code> 會消耗護貝藥，可到 <code>skill_db.yml</code> 搜尋該技能，把 <code>ItemCost</code> 的護貝藥消耗刪除；若要維持一小時，可把等級 5 的 <code>Duration</code> 改成 <code>3600000</code>。</p>
         </details>
         <details class="guide-card" data-category="file gear cmd">
           <summary>能力、攻擊與戰鬥 bonus 完整速查</summary>
@@ -4278,6 +4543,14 @@ UnEquipScript: |
               <li><code>@item 6909 1</code> 喵陽桃果實；<code>@item 643 1</code> 孵蛋器；<code>@item 611 1</code> 放大鏡。</li>
             </ul>
           </article>
+          <article class="guide-card" data-category="cmd">
+            <h4>天氣與場景指令</h4>
+            <ul>
+              <li><code>@snow</code> 下雪、<code>@clouds</code> 多雲、<code>@fog</code> 起霧、<code>@sakura</code> 櫻花、<code>@leaves</code> 秋天落葉。</li>
+              <li>天氣指令再打一次可關閉；傳送回原地圖或其他地圖後通常也會消失。</li>
+              <li><code>@reloadscript</code> 可重載腳本，也常被筆記用來提醒地圖怪物刷新。</li>
+            </ul>
+          </article>
           <article class="guide-card" data-category="map">
             <h4>重要座標</h4>
             <ul>
@@ -4292,33 +4565,85 @@ UnEquipScript: |
         </div>
         <details class="guide-card" data-category="cmd map">
           <summary>BOSS 與魔物召喚 ID</summary>
+          <p><code>@disguise 魔物ID</code> 可變身魔物，想變回來用 <code>@undisguise</code>。<code>@monster 魔物ID</code> 可召喚怪物；若想查更多 BOSS ID，可到怪物資料網站查 monster list，左側 ID 即可拿來變身或召喚。</p>
           <ul class="id-list">
             <li>俄塞里斯 1038、巴風特 1039、胡狼頭神 1098、海盜之王 1112、虎王 1115。</li>
             <li>蟻后 1147、皮里恩 1159、深淵騎士 1219、黑暗之王 1272、烏龜將軍 1312。</li>
-            <li>死靈騎士 1373、墨蛇君 1418、元靈武士 1492、RSX-0806 1623、阿特羅斯 1785。</li>
-            <li>詛咒蠅王 1874、青冠龍 1885、夜勝魔 1956、尼德霍格影子 2022、波伊塔塔 2068。</li>
-            <li>巴庫暴龍 2320、頑靈惡童 2371、異變王子 2959、時間支配者 3074、查爾斯頓 3 號 3124。</li>
-            <li>亡者君王 3658、國王波利 3810、魔劍士達納托斯 1708、大魔劍士達納托斯 20784。</li>
-            <li>EP20 花之飛馬 22177、終極拉斯甘德 21981、聖地清潔隊長 21980。</li>
+            <li>死靈騎士 1373、墨蛇君 1418、元靈武士 1492、RSX-0806 1623、EL-A17T 20340。</li>
+            <li>阿特羅斯 1785、阿特羅斯 黃色 3621、詛咒蠅王 1874、青冠龍 1885。</li>
+            <li>匹阿漫特 1947、莉亞梅特 22392、夜勝魔 1956、尼德霍格影子 2022、波伊塔塔 2068。</li>
+            <li>喬伊亞 2251、巴庫暴龍 2320、頑靈惡童 2371、異變王子 2959、時間支配者 3074。</li>
+            <li>查爾斯頓 3 號 3124、不死軍團軍官 3490、亡者君王 3658、左輪手槍草寇 3737、國王波利 3810。</li>
+            <li>白色騎士 20390、汙染黑暗之王 20422、變異白色騎士 20574、變異救世主凱美拉 20928。</li>
+            <li>R001-貝斯蒂亞 20934、死亡女巫 20943、國王哥布靈 20118、參宿四 20994。</li>
+            <li>巴基力雷吉麗芙 20610、巴基力英格麗 20611、駭骨迪塔勒泰晤勒斯 20618、藍月魔女 21631。</li>
+            <li>魔劍士達納托斯 1708、大魔劍士達納托斯 20784、破壞的達納托斯 20785。</li>
+            <li>次元銀月魔女 23003、參宿七 23001、扭曲之神 21315、魔王夢羅克 1916、重生的半魔神 3096、絕望之神夢羅克 3097。</li>
+            <li>音速小子壞蛋火焰龜 22251、壞蛋天使波利 22250、壞蛋野豬 22249、壞蛋魔菇 22248、壞蛋邪惡摩艾 22247、金屬索尼克 22243、納克魯斯 22244、蛋頭博士 22245。</li>
+            <li>EP20 終極拉斯甘德 21981、聖地清潔隊長 21980、巡邏隊長 21978、墮落天使冰蛞蝓 21982。</li>
+            <li>EP20 花之飛馬 22177、君主企鵝 22180、珊瑚海洋 22178、楓葉之樹 22179。</li>
             <li>EP21 死者嚮導 22404、惡夢匹阿漫特 22394、冰角 22362、堯樂圖斯審判官 22363。</li>
             <li>EP21 幽靈船船長 22372、被侵蝕的坦 22373、塔西鯊 22431、呸斯卡鯊 22438。</li>
-            <li>EP21 火神獸 22494、高級惡魔女僕 22484、高級惡魔侍者 22486、暴食的魔王貝雷傑 23355。</li>
+            <li>EP21 天地樹波利 22443、火神波利 22446、火神獸 22494、高級惡魔女僕 22484、高級惡魔侍者 22486。</li>
+            <li>EP21 深淵騎士團長 22488、暴食的魔王貝雷傑 23355、貪食者 22495。</li>
+            <li>RO 樂園姆薯一世 1971、大螃蟹 1971。</li>
             <li>神奇寶貝：噴火龍 25080、水箭龜 25078、妙蛙花 25079、皮卡丘 25077。</li>
           </ul>
-          <p class="note">魔物掉落率不可超過 10000，超過可能造成錯誤或怪物叫不出來。</p>
+          <p class="note">魔物掉落率不可超過 10000，超過可能造成錯誤或怪物叫不出來。怪物刷新與腳本刷新可用 <code>@reloadscript</code>。</p>
+          <pre class="shell">Drops:
+  - Item: Charizard_card
+    Rate: 10000</pre>
         </details>
         <details class="guide-card" data-category="gear">
           <summary>商城與服飾整理</summary>
-          <p><code>item_cash.yml</code> 分頁包含 New 頭上、Hot 頭中、Limited 頭下、Rental 披肩、Permanent 髮型、Scrolls 活動、Consumables 裝備、Other 寵物蛋、Sale 限量。頭上常從 2234 與 5001 開始，服飾常從 5914 開始；自訂服飾 40019-40108，自訂翅膀 40109-40180，新特效披肩 47101-47169。</p>
+          <p><code>item_cash.yml</code> 分頁包含 New 頭上、Hot 頭中、Limited 頭下、Rental 披肩、Permanent 髮型、Scrolls 活動、Consumables 裝備、Other 寵物蛋、Sale 限量。新增商城商品時 <code>Price</code> 不可為 0，否則不顯示；不想要的商城道具也可刪掉讓商城清爽。</p>
+          <pre class="shell">Body:
+  - Tab: New
+    Items:
+      - Item: Wing_Of_Fly         # 蒼蠅翅膀
+        Price: 1
+  - Tab: New
+    Items:
+      - Item: Angel_Gift_Box      # 天使禮包
+        Price: 988</pre>
+          <ul>
+            <li>頭上裝備常從 2234 與 5001 開始；服飾常從 5914 開始。</li>
+            <li>自訂服飾 40019-40108、自訂翅膀 40109-40180。</li>
+            <li>新特效披肩 47101-47169，可自行挑喜歡的。</li>
+            <li>如果想要披肩特效但裝備其他披肩，可到 <code>item_db.yml</code> 找編號並複製 <code>hateffect</code> 英文貼到披肩裝備下方。</li>
+            <li>披肩特效只有披肩會顯示，貼在武器不會顯示。</li>
+          </ul>
+          <pre class="shell">Costume_Garment: true   # 披肩，無法改成上中下
+Costume_Head_Top: true  # 頭上
+Costume_Head_Mid: true  # 頭中
+Costume_Head_Low: true  # 頭下</pre>
         </details>
         <details class="guide-card" data-category="file">
           <summary>錯誤與限制提醒</summary>
           <ul>
             <li>若檔案打開是亂碼，檢查系統語言是否為繁體；仍異常可改用 Word 開啟。</li>
             <li>某些新物品會顯示蘋果裝備；能用就可保留，會閃退就不要使用。</li>
+            <li>有些物品做出來沒有圖，但仍可正常使用；若不能用或跳出錯誤，就先不要用，等後續更新。</li>
             <li>傷害上限屬於登錄器限制，通常無法單靠資料檔修改。</li>
             <li>官方副本冷卻通常只能等隔天，沒有通用指令可重置。</li>
             <li>負重可透過中央 141 98 負重超人、提高 STR、降低道具重量、開倉庫或學負重技能解決。</li>
+          </ul>
+        </details>
+        <details class="guide-card" data-category="file cmd">
+          <summary>腳本使用、關閉與重新載入</summary>
+          <p>不想啟用某個 NPC 或腳本時，可在設定行最前面加 <code>//</code> 註解。改腳本後不想重開伺服器，可先試 <code>@reloadscript</code>，這個指令也可用於怪物刷新。</p>
+          <pre class="shell"># 自定義腳本.conf 原本：
+npc: npc/自定義腳本/BOSS.txt
+
+# 關閉整個腳本：
+//npc: npc/自定義腳本/BOSS.txt</pre>
+          <p>腳本內單一 NPC 也可用同樣方式關閉，例如中央 BOSS 展示不想顯示某隻王：</p>
+          <pre class="shell">prontera,161,109,3 script 暴食的魔王貝雷傑23355,{}
+//prontera,161,109,3 script 暴食的魔王貝雷傑23355,{}</pre>
+          <ul>
+            <li>打開腳本後可自行改商城道具、BOSS 編號、NPC 編號。</li>
+            <li>修改時照同類腳本格式模仿，縮排、逗號、座標與 NPC 外觀編號都要保留正確。</li>
+            <li>地圖新增魔物可到 <code>monster.txt</code> 自己新增。</li>
           </ul>
         </details>
         <details class="guide-card" data-category="gear cmd">
@@ -4385,6 +4710,8 @@ UnEquipScript: |
         <details class="guide-card" data-category="file">
           <summary>補品、掉錢與回收玩法</summary>
           <ul>
+            <li>喵陽桃果實 6909 可從人物狀態的地圖介面點選目的地，再按 MOVE 傳送；若沒有可用 <code>@item 6909 1</code>。</li>
+            <li>箭矢、子彈若想改成不消耗，可到 <code>battle.conf</code> 找弓系或槍系武器是否消耗箭矢 / 子彈的設定，將 <code>arrow_decrement: 1</code> 改為 <code>arrow_decrement: 0</code>。</li>
             <li>200% 掉寶糖果 12412 持續 15 分鐘；若想永久調整，改 <code>drops.conf</code> 更乾淨。</li>
             <li>料理、雄黃酒、艾草、柚子與燒烤肉串等 buff 可在資料檔把持續時間改為 3600000 毫秒，約 1 小時。</li>
             <li>若想打怪掉錢，可在 <code>monster.conf</code> 開啟由消滅魔物取得金錢。</li>
@@ -4392,6 +4719,9 @@ UnEquipScript: |
             <li>回收區可用蛇鱗、牛環等材料換楓幣；MVP 隨機掉神秘咒語笈，可換 1000 萬或收集材料做頭盔。</li>
             <li>卡片收入系統在 <code>@mapmove prt_in 286 128</code> 冒險家登記處，可把不要的卡片收錄累積能力。</li>
           </ul>
+          <pre class="shell">Script:
+  bonus2 bGetZenyNum,500,10;    // 殺死怪物有 10% 機率掉落 500 元
+  bonus2 bAddGetZenyNum,500,10; // 殺死怪物有 10% 機率掉落 500 元</pre>
         </details>
       </section>
 <p class="footer">RO EP21 單機攻略整理。內容已依攻略站形式重新編排，指令與編號請依實際伺服器版本測試。</p>
