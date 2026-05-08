@@ -26,6 +26,107 @@
       color-scheme: dark;
     }
 
+    /* Parchment spellbook theme layer */
+    :root {
+      --bg: #1b1209;
+      --bg2: #2a1a0d;
+      --paper: #f2e4c4;
+      --paper2: #ead4a4;
+      --paper3: #fff7df;
+      --ink: #3e2f28;
+      --ink-soft: #6f5744;
+      --line: rgba(92, 64, 38, .24);
+      --gold: #b88a35;
+      --gold2: #7a5525;
+      --cyan: #5d7480;
+      --violet: #6b4d73;
+      --rose: #8f2f24;
+      --text: #3e2f28;
+      --muted: #715b48;
+      --ok: #4f7a3f;
+      --warn: #946b20;
+      --danger: #9b2f24;
+      --radius: 12px;
+      --shadow: 0 24px 70px rgba(31, 18, 8, .42);
+      color-scheme: light;
+    }
+
+    html {
+      height: auto;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: #1b1209;
+    }
+
+    body {
+      height: auto;
+      min-height: 100%;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 220, 150, .08), transparent 26%),
+        radial-gradient(circle at 70% 24%, rgba(0, 0, 0, .2), transparent 30%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, transparent 2px 80px),
+        repeating-linear-gradient(8deg, #2b190c 0 18px, #241407 18px 36px, #35200f 36px 54px);
+      perspective: none;
+    }
+
+    body::before {
+      opacity: .42;
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,.035), transparent 16%, rgba(0,0,0,.06) 28%, transparent 44%),
+        repeating-linear-gradient(0deg, transparent 0 38px, rgba(0,0,0,.09) 39px 41px, transparent 42px 86px);
+      background-size: 260px 100%, 100% 86px;
+      animation: none;
+      mix-blend-mode: multiply;
+      mask-image: none;
+    }
+
+    body::after,
+    .layout::before,
+    .layout::after {
+      display: none !important;
+    }
+
+    .layout {
+      width: min(1320px, calc(100% - 36px));
+      max-width: calc(100vw - 36px);
+      margin: 20px auto;
+      padding: 26px;
+      gap: 20px;
+      grid-template-columns: 250px minmax(0, 1fr) 300px;
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.38), transparent 26%),
+        radial-gradient(circle at 78% 30%, rgba(116, 70, 32, .08), transparent 30%),
+        linear-gradient(90deg, rgba(126, 89, 45, .08), transparent 16%, transparent 84%, rgba(126, 89, 45, .08)),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+      border: 10px solid #8a5f2b;
+      border-image: linear-gradient(45deg, #5e3516, #c5a059, #7a4a1f, #d6b15e, #5e3516) 18 round;
+      border-radius: 18px;
+      box-shadow:
+        0 34px 90px rgba(0, 0, 0, .55),
+        inset 0 0 80px rgba(89, 55, 23, .18),
+        inset 0 0 0 1px rgba(255,255,255,.45);
+      filter: none;
+    }
+
+    .sidebar,
+    .toolbar,
+    .hero,
+    section {
+      color: var(--ink);
+      border-color: rgba(104, 73, 36, .28);
+      background:
+        linear-gradient(180deg, rgba(255, 249, 229, .72), rgba(232, 206, 149, .45)),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+      box-shadow:
+        0 10px 28px rgba(80, 48, 20, .15),
+        inset 0 0 26px rgba(120, 82, 38, .08);
+      backdrop-filter: none;
+      clip-path: none;
+    }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html {
@@ -1777,6 +1878,707 @@
         clip-path: none;
         font-size: 1.35rem;
       }
+    }
+
+    /* Final parchment spellbook override: this is intentionally last. */
+    :root {
+      --bg: #1b1209;
+      --bg2: #2a1a0d;
+      --paper: #f2e4c4;
+      --paper2: #ead4a4;
+      --paper3: #fff7df;
+      --ink: #3e2f28;
+      --ink-soft: #6f5744;
+      --line: rgba(92, 64, 38, .24);
+      --gold: #b88a35;
+      --gold2: #7a5525;
+      --cyan: #5d7480;
+      --violet: #6b4d73;
+      --rose: #8f2f24;
+      --text: #3e2f28;
+      --muted: #715b48;
+      --ok: #4f7a3f;
+      --warn: #946b20;
+      --danger: #9b2f24;
+      --radius: 12px;
+      --shadow: 0 24px 70px rgba(31, 18, 8, .42);
+      color-scheme: light;
+    }
+
+    html {
+      height: auto;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: #1b1209;
+    }
+
+    body {
+      height: auto;
+      min-height: 100%;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 220, 150, .08), transparent 26%),
+        radial-gradient(circle at 70% 24%, rgba(0, 0, 0, .2), transparent 30%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, transparent 2px 80px),
+        repeating-linear-gradient(8deg, #2b190c 0 18px, #241407 18px 36px, #35200f 36px 54px);
+      perspective: none;
+    }
+
+    body::before {
+      opacity: .42;
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,.035), transparent 16%, rgba(0,0,0,.06) 28%, transparent 44%),
+        repeating-linear-gradient(0deg, transparent 0 38px, rgba(0,0,0,.09) 39px 41px, transparent 42px 86px);
+      background-size: 260px 100%, 100% 86px;
+      animation: none;
+      mix-blend-mode: multiply;
+      mask-image: none;
+    }
+
+    body::after,
+    .layout::before,
+    .layout::after {
+      display: none !important;
+    }
+
+    .layout {
+      width: min(1320px, calc(100% - 36px));
+      max-width: calc(100vw - 36px);
+      margin: 20px auto;
+      padding: 26px;
+      gap: 20px;
+      grid-template-columns: 250px minmax(0, 1fr) 300px;
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.38), transparent 26%),
+        radial-gradient(circle at 78% 30%, rgba(116, 70, 32, .08), transparent 30%),
+        linear-gradient(90deg, rgba(126, 89, 45, .08), transparent 16%, transparent 84%, rgba(126, 89, 45, .08)),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+      border: 10px solid #8a5f2b;
+      border-image: linear-gradient(45deg, #5e3516, #c5a059, #7a4a1f, #d6b15e, #5e3516) 18 round;
+      border-radius: 18px;
+      box-shadow:
+        0 34px 90px rgba(0, 0, 0, .55),
+        inset 0 0 80px rgba(89, 55, 23, .18),
+        inset 0 0 0 1px rgba(255,255,255,.45);
+      filter: none;
+    }
+
+    .sidebar,
+    .toolbar,
+    .hero,
+    section {
+      color: var(--ink);
+      border-color: rgba(104, 73, 36, .28);
+      background:
+        linear-gradient(180deg, rgba(255, 249, 229, .72), rgba(232, 206, 149, .45)),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+      box-shadow:
+        0 10px 28px rgba(80, 48, 20, .15),
+        inset 0 0 26px rgba(120, 82, 38, .08);
+      backdrop-filter: none;
+      clip-path: none;
+    }
+
+    .sidebar {
+      width: 250px;
+      border-radius: 18px 6px 18px 6px;
+      overflow: visible;
+      background:
+        linear-gradient(180deg, rgba(91, 51, 23, .94), rgba(60, 34, 18, .92)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 1px, transparent 1px 18px);
+    }
+
+    .sidebar::after {
+      content: "攻略目錄";
+      right: -28px;
+      color: rgba(62, 47, 40, .22);
+    }
+
+    .brand {
+      padding: 20px 18px;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(255, 232, 154, .22), transparent 30%),
+        linear-gradient(135deg, rgba(94, 53, 22, .95), rgba(124, 77, 31, .86));
+      border-bottom: 1px solid rgba(255, 232, 154, .22);
+    }
+
+    .brand small,
+    .brand h1 {
+      color: #ffe8a3;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      text-shadow: 0 2px 0 rgba(0,0,0,.22);
+    }
+
+    .nav {
+      padding: 12px 0 12px 12px;
+      gap: 8px;
+    }
+
+    .nav a {
+      min-height: 42px;
+      padding: 9px 14px 9px 44px;
+      color: #fff9df;
+      background:
+        linear-gradient(90deg, #b98c3b, #8f5e25 72%, rgba(62, 47, 40, .92));
+      border: 1px solid rgba(255, 232, 154, .34);
+      border-right: 0;
+      border-radius: 0 16px 16px 0;
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%);
+      box-shadow: 0 6px 14px rgba(35, 20, 10, .22);
+    }
+
+    .nav a::before {
+      color: rgba(255, 248, 215, .86);
+    }
+
+    .nav a:hover {
+      color: #fff;
+      background:
+        linear-gradient(90deg, #d2a44a, #a4672a 74%, rgba(62, 47, 40, .96));
+      transform: translateX(5px);
+      box-shadow: 0 8px 18px rgba(35, 20, 10, .28);
+    }
+
+    main,
+    .guide-card p,
+    .guide-card li,
+    .section-head p,
+    td,
+    details,
+    .footer {
+      color: var(--muted);
+    }
+
+    .hero {
+      min-height: 360px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255, 249, 229, .8), rgba(226, 194, 126, .42)),
+        radial-gradient(circle at 85% 18%, rgba(184, 138, 53, .22), transparent 32%),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+    }
+
+    .hero::before,
+    .hero::after {
+      animation: none;
+    }
+
+    .hero::after {
+      content: "RO";
+      color: rgba(114, 79, 35, .08);
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand h1,
+    .hero h2,
+    .section-head h3,
+    .guide-card h4,
+    summary {
+      font-family: "EB Garamond", Georgia, "Times New Roman", "Noto Serif TC", "Microsoft JhengHei", serif;
+      letter-spacing: .01em;
+    }
+
+    .hero h2,
+    .section-head h3,
+    .guide-card h4,
+    summary {
+      color: var(--ink);
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      text-shadow: none;
+    }
+
+    .section-head {
+      border-bottom: 2px solid rgba(184, 138, 53, .62);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: clamp(16px, 2vw, 24px);
+      border-radius: 18px;
+    }
+
+    .guide-card,
+    details,
+    .note,
+    .source-group,
+    .result-item {
+      border: 1px solid rgba(92, 64, 38, .24);
+      border-radius: 14px;
+      clip-path: none;
+      color: var(--ink);
+      background:
+        linear-gradient(145deg, rgba(255, 250, 232, .82), rgba(225, 196, 135, .34)),
+        url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+      box-shadow:
+        0 7px 16px rgba(82, 49, 20, .12),
+        inset 0 0 22px rgba(132, 87, 38, .055);
+    }
+
+    .guide-card::before {
+      width: 4px;
+      background: linear-gradient(var(--gold), rgba(143, 47, 36, .72));
+    }
+
+    .guide-card::after {
+      background: linear-gradient(90deg, rgba(184, 138, 53, .55), transparent);
+    }
+
+    .guide-card:hover,
+    details:hover {
+      transform: translateY(-1px);
+      border-color: rgba(184, 138, 53, .48);
+      box-shadow: 0 12px 26px rgba(82, 49, 20, .16);
+    }
+
+    .badge,
+    code,
+    .cmd,
+    .copy,
+    .source-copy,
+    .button,
+    .filter,
+    .gm-alias,
+    .id-card .id {
+      color: #553a1e;
+      border-color: rgba(184, 138, 53, .52);
+      background:
+        linear-gradient(180deg, rgba(255, 246, 210, .9), rgba(218, 176, 87, .28));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+    }
+
+    code,
+    .cmd,
+    .copy,
+    .source-copy,
+    .button,
+    .filter {
+      font-family: "Courier New", "Cascadia Mono", Consolas, monospace;
+      border-radius: 999px;
+    }
+
+    .copy,
+    .source-copy,
+    .button,
+    .filter {
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .copy:hover,
+    .source-copy:hover,
+    .button:hover,
+    .filter:hover,
+    .id-card:hover {
+      border-color: rgba(143, 47, 36, .44);
+      box-shadow: 0 0 0 3px rgba(184, 138, 53, .12), 0 8px 18px rgba(82, 49, 20, .16);
+    }
+
+    .filter.active,
+    .copy.is-copied,
+    .source-copy.is-copied {
+      color: #fff8de;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.18), transparent 36%),
+        linear-gradient(135deg, #9b2f24, #6f2018);
+      border-color: rgba(255, 232, 154, .52);
+    }
+
+    .toolbar {
+      border-radius: 18px 8px 18px 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 248, 222, .95), rgba(226, 196, 135, .72)),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+    }
+
+    .search {
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(255, 252, 238, .96), rgba(240, 222, 174, .9));
+      border-color: rgba(143, 91, 35, .42);
+      box-shadow: inset 0 2px 8px rgba(75, 48, 24, .08);
+    }
+
+    .search::placeholder {
+      color: rgba(90, 67, 47, .78);
+    }
+
+    .search-results.active,
+    .source-result-grid {
+      gap: 10px;
+    }
+
+    .result-item,
+    .source-result {
+      color: var(--ink);
+      border-style: solid;
+      background:
+        linear-gradient(90deg, rgba(255, 249, 225, .95), rgba(238, 212, 154, .62));
+    }
+
+    .source-result p,
+    .result-snippet,
+    .result-section {
+      color: var(--muted);
+    }
+
+    .hit-mark {
+      color: #3e2f28;
+      background: linear-gradient(180deg, rgba(255, 232, 124, .25), rgba(196, 148, 47, .42));
+      border-bottom: 2px solid rgba(150, 103, 30, .45);
+      border-radius: 4px;
+    }
+
+    .table-wrap {
+      border: 1px solid rgba(92, 64, 38, .2);
+      background:
+        linear-gradient(180deg, rgba(255, 250, 232, .78), rgba(224, 194, 132, .35)),
+        url("https://www.transparenttextures.com/patterns/parchment.png");
+    }
+
+    table {
+      border-collapse: collapse;
+      color: var(--ink);
+    }
+
+    th {
+      color: #4b3219;
+      background: rgba(197, 160, 89, .22);
+      border-bottom: 2px solid rgba(132, 87, 38, .32);
+    }
+
+    td {
+      background: transparent;
+      border-bottom: 1px dashed rgba(74, 55, 40, .24);
+    }
+
+    tr:hover td {
+      color: var(--ink);
+      background: rgba(184, 138, 53, .08);
+    }
+
+    .shell {
+      color: #3f2b18;
+      border-color: rgba(92, 64, 38, .28);
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, rgba(255, 251, 232, .88), rgba(226, 204, 153, .62)),
+        repeating-linear-gradient(0deg, transparent 0 26px, rgba(94, 62, 30, .08) 27px 28px);
+      box-shadow: inset 0 0 24px rgba(97, 60, 26, .08);
+    }
+
+    .id-card {
+      background:
+        linear-gradient(135deg, rgba(255, 251, 232, .88), rgba(214, 177, 94, .26));
+      border-color: rgba(184, 138, 53, .34);
+      clip-path: none;
+    }
+
+    .gm-command-row {
+      background:
+        linear-gradient(180deg, rgba(255, 251, 232, .9), rgba(225, 199, 142, .38));
+      border-color: rgba(92, 64, 38, .22);
+    }
+
+    .gm-name code {
+      color: #5f351a;
+      background: rgba(197, 160, 89, .18);
+    }
+
+    .to-top {
+      color: #fff7d7;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.18), transparent 30%),
+        linear-gradient(135deg, #9b2f24, #6f2018);
+      border: 2px solid rgba(255, 225, 146, .65);
+      box-shadow: 0 12px 26px rgba(45, 20, 8, .35), inset 0 0 0 2px rgba(255,255,255,.12);
+      clip-path: none;
+    }
+
+    .magic-particle {
+      position: fixed;
+      z-index: 10000;
+      width: 7px;
+      height: 7px;
+      pointer-events: none;
+      border-radius: 999px;
+      background: radial-gradient(circle, #fff8c7 0 20%, #d6a33a 38%, rgba(214, 163, 58, 0) 72%);
+      box-shadow: 0 0 12px rgba(255, 217, 112, .9);
+    }
+
+    .magic-particle.id {
+      background: radial-gradient(circle, #f8fdff 0 20%, #7fa6b1 38%, rgba(127, 166, 177, 0) 72%);
+      box-shadow: 0 0 12px rgba(127, 166, 177, .86);
+    }
+
+    .magic-particle.danger {
+      background: radial-gradient(circle, #ffe4d8 0 20%, #9b2f24 42%, rgba(155, 47, 36, 0) 72%);
+      box-shadow: 0 0 12px rgba(155, 47, 36, .78);
+    }
+
+    .copy-stamp {
+      position: fixed;
+      z-index: 10001;
+      pointer-events: none;
+      padding: 6px 12px;
+      color: #fff8dc;
+      font: 900 .82rem "Microsoft JhengHei", system-ui, sans-serif;
+      letter-spacing: .12em;
+      border: 2px solid rgba(255, 232, 154, .72);
+      border-radius: 999px;
+      background: rgba(132, 32, 24, .92);
+      box-shadow: 0 8px 20px rgba(45, 20, 8, .28);
+      transform: translate(-50%, -50%) rotate(-8deg);
+    }
+
+    @media (max-width: 1080px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar,
+      .toolbar {
+        width: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding-bottom: calc(86px + env(safe-area-inset-bottom));
+      }
+
+      .layout {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px 10px calc(96px + env(safe-area-inset-bottom));
+        border-width: 0;
+        border-top: 6px solid #b88a35;
+        border-radius: 0;
+      }
+
+      .toolbar {
+        order: 1;
+      }
+
+      main {
+        order: 2;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        z-index: 9990;
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 18px 18px 0 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        transform: none !important;
+        box-shadow: 0 -10px 28px rgba(45, 20, 8, .34);
+      }
+
+      .brand {
+        display: none;
+      }
+
+      .nav {
+        display: flex;
+        gap: 8px;
+        padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+      }
+
+      .nav a {
+        flex: 0 0 auto;
+        min-width: 76px;
+        min-height: 42px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 232, 154, .32);
+        clip-path: none;
+        font-size: .88rem;
+        white-space: nowrap;
+      }
+
+      .nav a::before {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-actions,
+      .filterbar {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .grid,
+      .grid.two,
+      .grid.three,
+      .grid.four,
+      .stats,
+      .id-list,
+      .source-result-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      table {
+        min-width: 620px;
+      }
+
+      .to-top {
+        right: max(14px, env(safe-area-inset-right));
+        bottom: calc(78px + env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .magic-particle,
+      .copy-stamp {
+        display: none;
+      }
+    }
+
+    /* Final readability pass: darker ink on parchment. */
+    :root {
+      --ink: #2f2119;
+      --ink-soft: #463124;
+      --muted: #4f382a;
+      --line: rgba(70, 49, 36, .34);
+    }
+
+    body,
+    main,
+    section,
+    details,
+    .guide-card,
+    .table-wrap,
+    .source-group,
+    .result-item {
+      color: var(--ink);
+    }
+
+    p,
+    li,
+    td,
+    .hero p,
+    .section-head p,
+    .guide-card p,
+    .guide-card li,
+    details p,
+    details li,
+    .footer,
+    .stat span,
+    .id-note,
+    .source-result p,
+    .result-snippet,
+    .result-section,
+    .gm-help,
+    .gm-help-pre,
+    .filter-hint,
+    .search-count {
+      color: var(--muted) !important;
+    }
+
+    .brand small,
+    .brand h1,
+    .nav a {
+      color: #fff4c9;
+    }
+
+    .hero h2,
+    .section-head h3,
+    .guide-card h4,
+    summary,
+    th,
+    .result-title,
+    .source-title,
+    .id-card .name,
+    .gm-name,
+    .gm-name code {
+      color: var(--ink) !important;
+    }
+
+    .badge,
+    .chip,
+    code,
+    .cmd,
+    .copy,
+    .source-copy,
+    .button,
+    .filter,
+    .gm-alias,
+    .id-card .id,
+    .source-line {
+      color: #3a2617 !important;
+      border-color: rgba(103, 66, 31, .58);
+      background:
+        linear-gradient(180deg, rgba(255, 244, 201, .98), rgba(197, 160, 89, .38));
+    }
+
+    .note {
+      color: #40271c !important;
+      border-color: rgba(143, 47, 36, .42);
+      background:
+        linear-gradient(135deg, rgba(255, 235, 190, .94), rgba(202, 150, 85, .34)),
+        url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    }
+
+    .search {
+      color: #2f2119;
+    }
+
+    .search::placeholder {
+      color: #60452f;
+      opacity: 1;
+    }
+
+    .result-item,
+    .source-result,
+    .gm-command-row,
+    .id-card {
+      border-color: rgba(70, 49, 36, .3);
+    }
+
+    .hit-mark {
+      color: #26170f !important;
+      background: linear-gradient(180deg, rgba(255, 228, 91, .55), rgba(184, 138, 53, .5));
+    }
+
+    .shell,
+    pre,
+    .gm-help pre {
+      color: #2f2119 !important;
+    }
+
+    .filter.active,
+    .copy.is-copied,
+    .source-copy.is-copied,
+    .to-top {
+      color: #fff8de !important;
     }
   </style>
 </head>
@@ -4826,20 +5628,21 @@ npc: npc/自定義腳本/BOSS.txt
         }
 
         card.dataset.bound = 'true';
-        card.addEventListener('click', () => copyIdCard(card));
+        card.addEventListener('click', event => copyIdCard(card, event));
         card.addEventListener('keydown', event => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            copyIdCard(card);
+            copyIdCard(card, event);
           }
         });
       });
     }
 
-    async function copyIdCard(card) {
+    async function copyIdCard(card, event) {
       const text = card.dataset.copy;
       const idLabel = card.querySelector('.id');
       const oldText = idLabel.textContent;
+      const feedback = triggerMagicFeedback(event, card, 'id');
 
       try {
         await navigator.clipboard.writeText(text);
@@ -4849,6 +5652,7 @@ npc: npc/自定義腳本/BOSS.txt
 
       card.classList.add('copied');
       idLabel.textContent = '已複製';
+      showCopyStamp(feedback.x, feedback.y, '已收錄');
       setTimeout(() => {
         card.classList.remove('copied');
         idLabel.textContent = oldText;
@@ -4867,6 +5671,91 @@ npc: npc/自定義腳本/BOSS.txt
         '"': '&quot;',
         "'": '&#039;'
       }[char]));
+    }
+
+    function prefersReducedMotion() {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function getMagicPoint(event, target) {
+      if (event?.clientX || event?.clientY) {
+        return { x: event.clientX, y: event.clientY };
+      }
+
+      const rect = target.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+    }
+
+    function getMagicType(target) {
+      const text = `${target?.dataset?.copy || ''} ${target?.textContent || ''}`.toLowerCase();
+      if (target?.closest?.('.id-card')) {
+        return 'id';
+      }
+      if (/(reload|script|db|conf|delete|刪除|危險|錯誤|閃退)/i.test(text)) {
+        return 'danger';
+      }
+      return 'gold';
+    }
+
+    function createMagicBurst(x, y, type = 'gold') {
+      if (prefersReducedMotion()) {
+        return;
+      }
+
+      const count = 12;
+      for (let index = 0; index < count; index += 1) {
+        const particle = document.createElement('span');
+        particle.className = `magic-particle ${type}`;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        document.body.appendChild(particle);
+
+        const angle = (Math.PI * 2 * index) / count;
+        const distance = 34 + Math.random() * 28;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        particle.animate([
+          { transform: 'translate(-50%, -50%) scale(.55)', opacity: 1 },
+          { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(1.2)`, opacity: .9, offset: .56 },
+          { transform: `translate(calc(-50% + ${dx * 1.35}px), calc(-50% + ${dy * 1.35}px)) scale(.12)`, opacity: 0 }
+        ], {
+          duration: 620,
+          easing: 'cubic-bezier(.16,.84,.32,1)'
+        }).addEventListener('finish', () => particle.remove());
+      }
+    }
+
+    function showCopyStamp(x, y, text = '已複製') {
+      if (prefersReducedMotion()) {
+        return;
+      }
+
+      const stamp = document.createElement('span');
+      stamp.className = 'copy-stamp';
+      stamp.textContent = text;
+      stamp.style.left = `${x}px`;
+      stamp.style.top = `${y}px`;
+      document.body.appendChild(stamp);
+
+      stamp.animate([
+        { transform: 'translate(-50%, -50%) rotate(-12deg) scale(.82)', opacity: 0 },
+        { transform: 'translate(-50%, -64%) rotate(-8deg) scale(1)', opacity: 1, offset: .28 },
+        { transform: 'translate(-50%, -86%) rotate(-4deg) scale(.96)', opacity: 0 }
+      ], {
+        duration: 820,
+        easing: 'ease-out'
+      }).addEventListener('finish', () => stamp.remove());
+    }
+
+    function triggerMagicFeedback(event, target, forcedType) {
+      const point = getMagicPoint(event, target);
+      const type = forcedType || getMagicType(target);
+      createMagicBurst(point.x, point.y, type);
+      return { ...point, type };
     }
 
     function getCardTitle(card) {
@@ -5016,7 +5905,10 @@ npc: npc/自定義腳本/BOSS.txt
           </span>
           <span class="result-section">${escapeHtml(item.section)}</span>
         `;
-        button.addEventListener('click', () => scrollToSearchResult(index));
+        button.addEventListener('click', event => {
+          triggerMagicFeedback(event, button);
+          scrollToSearchResult(index);
+        });
         searchResults.appendChild(button);
       });
 
@@ -5068,17 +5960,23 @@ npc: npc/自定義腳本/BOSS.txt
             if (event.target.closest('.source-copy')) {
               return;
             }
+            triggerMagicFeedback(event, row, 'id');
             scrollElementToCenter(row);
           });
           row.querySelector('.source-copy').addEventListener('click', async event => {
             event.stopPropagation();
+            const copyButton = event.currentTarget;
+            const feedback = triggerMagicFeedback(event, copyButton);
             try {
               await navigator.clipboard.writeText(item.text);
-              event.currentTarget.textContent = '已複製';
-              setTimeout(() => event.currentTarget.textContent = '複製', 900);
+              copyButton.textContent = '已複製';
+              copyButton.classList.add('is-copied');
+              showCopyStamp(feedback.x, feedback.y, '已複製');
+              setTimeout(() => copyButton.textContent = '複製', 900);
             } catch {
               window.prompt('複製這段原文：', item.text);
             }
+            setTimeout(() => copyButton.classList.remove('is-copied'), 900);
           });
 
           list.appendChild(row);
@@ -5205,7 +6103,10 @@ npc: npc/自定義腳本/BOSS.txt
     }
 
     document.querySelectorAll('.nav a, .hero-actions a').forEach(link => {
-      link.addEventListener('click', resetFilters);
+      link.addEventListener('click', event => {
+        triggerMagicFeedback(event, link);
+        resetFilters();
+      });
     });
 
     window.addEventListener('pageshow', resetFilters);
@@ -5213,6 +6114,33 @@ npc: npc/自定義腳本/BOSS.txt
     const sidebar = document.querySelector('.sidebar');
     const layout = document.querySelector('.layout');
     const pageScroller = document.body;
+    const dockLabelMap = {
+      '#start': '起步',
+      '#simulation': '仿正',
+      '#commands': '指令',
+      '#gm-commands': 'GM',
+      '#leveling-order': '練等',
+      '#maps': '地圖',
+      '#equipment': '裝備',
+      '#pets': '外觀',
+      '#npcs': 'NPC',
+      '#files': '檔案',
+      '#skills': 'Script',
+      '#database': '速查'
+    };
+
+    function applyMobileDockLabels() {
+      const compact = window.matchMedia('(max-width: 760px)').matches;
+      document.querySelectorAll('.nav a').forEach(link => {
+        if (!link.dataset.fullLabel) {
+          link.dataset.fullLabel = link.textContent.trim();
+        }
+
+        link.textContent = compact
+          ? (dockLabelMap[link.getAttribute('href')] || link.dataset.fullLabel)
+          : link.dataset.fullLabel;
+      });
+    }
 
     function getPageScrollTop() {
       return pageScroller.scrollTop || document.documentElement.scrollTop || window.scrollY || 0;
@@ -5232,17 +6160,27 @@ npc: npc/自定義腳本/BOSS.txt
 
     window.addEventListener('scroll', moveSidebarWithScroll, { passive: true });
     pageScroller.addEventListener('scroll', moveSidebarWithScroll, { passive: true });
-    window.addEventListener('resize', moveSidebarWithScroll);
+    window.addEventListener('resize', () => {
+      moveSidebarWithScroll();
+      applyMobileDockLabels();
+    });
     moveSidebarWithScroll();
+    applyMobileDockLabels();
 
     document.querySelectorAll('.copy').forEach(button => {
-      button.addEventListener('click', async () => {
+      button.addEventListener('click', async event => {
         const text = button.dataset.copy;
+        const feedback = triggerMagicFeedback(event, button);
         try {
           await navigator.clipboard.writeText(text);
           const old = button.textContent;
           button.textContent = '已複製';
-          setTimeout(() => button.textContent = old, 900);
+          button.classList.add('is-copied');
+          showCopyStamp(feedback.x, feedback.y, feedback.type === 'danger' ? '已封存' : '已複製');
+          setTimeout(() => {
+            button.textContent = old;
+            button.classList.remove('is-copied');
+          }, 900);
         } catch {
           window.prompt('複製這段指令：', text);
         }
