@@ -645,7 +645,7 @@
       position: fixed;
       right: 18px;
       bottom: 18px;
-      z-index: 20;
+      z-index: 9999;
       border: 1px solid rgba(246, 211, 101, .35);
       background: rgba(15, 23, 42, .88);
       color: var(--gold);
@@ -654,6 +654,9 @@
       border-radius: 50%;
       cursor: pointer;
       box-shadow: var(--shadow);
+      pointer-events: auto;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .hidden { display: none !important; }
@@ -1763,6 +1766,16 @@
 
       .gm-help pre {
         white-space: pre-wrap;
+      }
+
+      .to-top {
+        right: max(14px, env(safe-area-inset-right));
+        bottom: max(14px, env(safe-area-inset-bottom));
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        clip-path: none;
+        font-size: 1.35rem;
       }
     }
   </style>
@@ -5236,8 +5249,15 @@ npc: npc/自定義腳本/BOSS.txt
       });
     });
 
-    document.querySelector('.to-top').addEventListener('click', () => {
-      pageScroller.scrollTo({ top: 0, behavior: 'smooth' });
+    function scrollPageToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.documentElement.scrollTo?.({ top: 0, behavior: 'smooth' });
+      document.body.scrollTo?.({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelector('.to-top').addEventListener('click', event => {
+      event.preventDefault();
+      scrollPageToTop();
     });
   </script>
 </body>
